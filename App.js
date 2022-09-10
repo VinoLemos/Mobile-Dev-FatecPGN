@@ -1,79 +1,92 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, Pressable} from 'react-native';
- 
-class App extends Component{
+import { View, Text, StyleSheet, Button, Pressable } from 'react-native';
+
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       count: 0
     };
   }
-  
-  increase(){
+
+  increase() {
     this.setState({
       count: this.state.count + 1
     });
   }
-  decrease(){
+  decrease() {
+    if (this.state.count <= 0){
+      this.state.count = 1
+    }
     this.setState({
       count: this.state.count - 1
     });
   }
- 
-  render(){
-    return(
+
+  render() {
+    return (
       <View style={styles.container}>
 
-      <Text style={styles.title}>Contador de Pessoas</Text>
-      
-      <Text style={styles.counter}>{this.state.count}</Text>
+        <Text style={styles.title}>Contador de Pessoas</Text>
 
-      <Pressable style={styles.increaseButton} onPress={() => this.increase()}>
-        <Text style={styles.textButton}>+</Text>
-      </Pressable>
+        <Text style={styles.counter}>{this.state.count}</Text>
 
-      <Pressable style={styles.decreaseButton} onPress={() => this.decrease()}>
-        <Text style={styles.textButton}>-</Text>
-      </Pressable>
- 
+        <View style={styles.buttons}>
+          <Pressable style={styles.increaseButton} onPress={() => this.increase()}>
+            <Text style={styles.textButton}>+</Text>
+          </Pressable>
+
+          <Pressable style={styles.decreaseButton} onPress={() => this.decrease()}>
+            <Text style={styles.textButton}>-</Text>
+          </Pressable>
+        </View>
       </View>
     );
   }
 }
- 
+
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
-    marginTop: 80,
+    backgroundColor: 'white'
   },
-  title:{
+  title: {
     fontSize: 50,
     textAlign: 'center',
-    color: 'gray',
+    marginTop: 80,
+    color: 'orange',
     fontFamily: 'Cambria',
   },
-  counter:{
+  counter: {
     alignSelf: 'center',
     fontSize: 80,
-    margin: 50
+    margin: 50,
+    color: 'red',
+    borderWidth: 2,
+    padding: 25
   },
-  increaseButton:{
+  increaseButton: {
     width: 200,
     height: 50,
     margin: 50,
+    marginBottom: 10,
     backgroundColor: 'green'
   },
-  decreaseButton:{
+  decreaseButton: {
     width: 200,
     height: 50,
     margin: 50,
+    marginTop: 10,
     backgroundColor: 'red'
   },
-  textButton:{
+  textButton: {
     alignSelf: 'center',
     paddingTop: 5,
     fontSize: 24,
+  },
+  buttons: {
+    alignSelf: 'center'
   }
 })
- 
+
 export default App;
