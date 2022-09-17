@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
       },
       textInput:{
         height: 45,
-        width: '50%',
+        width: '10%',
         alignSelf: 'center',
         borderWidth: 1,
         borderColor: '#222',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
       },
       button:{
         backgroundColor: '#42f54e',
-        width: '50%',
+        width: '20%',
         alignSelf: 'center',
         padding: 15,        
         borderRadius: 20,

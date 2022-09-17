@@ -15,12 +15,20 @@ class App extends Component {
   }
 
   calcularImc(){
-    let resultado = this.peso / this.altura ** 2;
-    if (resultado >=18.5 && resultado <=24.9){
+    let resultado = this.peso / (this.altura * this.altura) ;
+    if (resultado >18.5 && resultado <24.9){
         this.setState({imc: "Peso normal"})
     }
     else if (resultado >= 25.0 && resultado <=29.9){
         this.setState({imc: "Sobrepeso"})
+    }
+    else if (resultado >=30.0)
+    {
+      this.setState({imc: "Obesidade"})
+    }
+    else (resultado >40.0)
+    {
+      this.setState({imc: "Obesidade Grave"})
     }
   }
 
@@ -34,9 +42,15 @@ class App extends Component {
 
         <Image source={scale} style={styles.scale} />
 
-        <TextInput placeholder="Peso" style={styles.textInput}/>
+        <TextInput placeholder="Peso" 
+                  style={styles.textInput}
+                  onChangeText={(p)=>this.setState({peso: p})}
+                  />
 
-        <TextInput placeholder="Altura" style={styles.textInput}/>
+        <TextInput placeholder="Altura" 
+                  style={styles.textInput}
+                  onChangeText={(a)=>this.setState({altura: a})}
+                  />
 
         <Pressable style={styles.button}>
             <Text style={styles.buttonText}
