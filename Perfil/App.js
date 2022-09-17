@@ -42,7 +42,7 @@ class App extends Component{
         },
         profileImage: {
           width: 300, 
-          height: 400,
+          height: '100%',
           alignSelf: 'center',
           marginTop: 40,
           marginBottom: 40,
@@ -50,7 +50,9 @@ class App extends Component{
           height: '65%'
         },
         background: {
-          flex: 1
+          flex: 1,
+          resizeMode: 'cover',
+          height: '120%'
         }
       }
     )
@@ -58,7 +60,7 @@ class App extends Component{
     const profileImage = { uri: 'https://cdn.dribbble.com/users/2924953/screenshots/9713958/sss.gif'};
     let nome = 'Vinícius Lemos de Oliveira';
     return(
-        <ImageBackground source={image} resizeMode="cover" width= '100%' height= '100%' style={styles.background}>
+        <ImageBackground source={image} style={styles.background}>
       <View>
         <Text style={styles.title}>Meu App!</Text>
         <Image
