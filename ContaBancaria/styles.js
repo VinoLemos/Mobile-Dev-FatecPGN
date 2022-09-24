@@ -8,6 +8,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    subcontainer: {
+        flex: 4
+    },
+    titulo: {
+        color: 'red',
+        fontSize: 40,
+        alignSelf: 'center',
+        margin: 50,
+        flex: 1,
+    },
     textInput: {
         alignSelf: 'stretch',
         padding: 10,
@@ -20,7 +30,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2     // Add this to specify bottom border thickness
     },
     form: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     button: {
         backgroundColor: '#42f54e',
@@ -39,10 +49,15 @@ const styles = StyleSheet.create({
     },
     sliderText:
     {
-        textAlign: 'center', 
+        textAlign: 'center',
         fontSize: 25,
         color: 'green'
-    }
+    },
+    resultados:
+    {
+        alignContent: 'left',
+        justifyContent: 'left'
+    },
 });
 
 export { styles }

@@ -15,8 +15,23 @@ class App extends Component {
       brasileiro: false,
       nacionalidade: ' ',
       limite: 50.00,
+      resultado: ''
     }
+    this.mostrarDados = this.mostrarDados.bind(this);
     this.eBrasileiro = this.eBrasileiro.bind(this);
+  }
+
+  mostrarDados() {
+    this.setState({
+      resultado:
+        `Dados informados: \n` +
+        `Nome: ${this.state.nome} \n` +
+        `Idade: ${this.state.idade} \n` +
+        `Sexo: ${this.state.sexo} \n` +
+        `Escolaridade: ${this.state.escolaridade} \n` +
+        `Nacionalidade: ${this.state.nacionalidade} \n` +
+        `Limite: ${this.state.limite}`
+    })
   }
 
   eBrasileiro() {
@@ -30,9 +45,11 @@ class App extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Abertura de Conta</Text>
 
+      <View style={styles.container}>
+        <Text style={styles.titulo}>Abertura de Conta</Text>
+
+      <View style={styles.subcontainer}>
         <View style={styles.form}>
           <Text>Nome: </Text>
           <TextInput placeholder="Nome"
@@ -98,9 +115,18 @@ class App extends Component {
         </View>
 
         <Text>{this.state.nacionalidade}</Text>
-        <Pressable style={styles.button}>          
-          <Text style={styles.buttonText}>Confirmar</Text>
+        <Pressable style={styles.button}>
+          <Text
+            style={styles.buttonText}
+            onPress={this.mostrarDados}
+          >
+            Confirmar
+          </Text>
         </Pressable>
+
+        <Text style={styles.resultados}>{this.state.resultado}</Text>
+
+        </View>
       </View>
     )
   }
