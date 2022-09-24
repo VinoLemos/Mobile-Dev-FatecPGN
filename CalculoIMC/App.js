@@ -4,31 +4,34 @@ import { Text, View, Image, TextInput, Pressable } from 'react-native';
 import { styles } from './styles';
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       altura: 0.00,
       peso: 0.00,
-      imc: ''
+      imc: '',
+      cor: '#bdc3c7',
     };
     this.calcularImc = this.calcularImc.bind(this);
   }
 
-  calcularImc(){
-    let resultado = this.peso / (this.altura * this.altura) ;
-    if (resultado >18.5 && resultado <24.9){
-        this.setState({imc: "Peso normal"})
+  calcularImc() {
+    const resultado = this.state.peso / (this.state.altura * this.state.altura);
+    if (resultado < 18.5 ){
+      this.setState({ imc: "Magreza"})
     }
-    else if (resultado >= 25.0 && resultado <=29.9){
-        this.setState({imc: "Sobrepeso"})
+    else if (resultado >= 18.5 && resultado <= 24.9) {
+      this.setState({ imc: "Peso normal" })
     }
-    else if (resultado >=30.0)
+    else if (resultado >= 25.0 && resultado <= 29.9) {
+      this.setState({ imc: "Sobrepeso" })
+    }
+    else if (resultado >= 30.0 && resultado <= 40.0) {
+      this.setState({ imc: "Obesidade" })
+    }
+    else if(resultado > 40.0)
     {
-      this.setState({imc: "Obesidade"})
-    }
-    else (resultado >40.0)
-    {
-      this.setState({imc: "Obesidade Grave"})
+      this.setState({ imc: "Obesidade Grave" })
     }
   }
 
@@ -42,20 +45,21 @@ class App extends Component {
 
         <Image source={scale} style={styles.scale} />
 
-        <TextInput placeholder="Peso" 
-                  style={styles.textInput}
-                  onChangeText={(p)=>this.setState({peso: p})}
-                  />
+        <TextInput placeholder="Peso"
+          style={styles.textInput}
+          onChangeText={(p) => this.setState({ peso: p })}
+        />
 
-        <TextInput placeholder="Altura" 
-                  style={styles.textInput}
-                  onChangeText={(a)=>this.setState({altura: a})}
-                  />
+        <TextInput placeholder="Altura"
+          style={styles.textInput}
+          onChangeText={(a) => this.setState({ altura: a })}
+        />
 
         <Pressable style={styles.button}>
-            <Text style={styles.buttonText}
-                  onPress={this.calcularImc}
-                  >Verificar</Text>
+          <Text style={styles.buttonText}
+            onPress={this.calcularImc}
+          >Verificar
+          </Text>
         </Pressable>
 
         <Text>{this.state.imc}</Text>
