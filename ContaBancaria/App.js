@@ -45,20 +45,18 @@ class App extends Component {
 
   render() {
     return (
-
+      
       <View style={styles.container}>
         <Text style={styles.titulo}>Abertura de Conta</Text>
-
-      <View style={styles.subcontainer}>
         <View style={styles.form}>
-          <Text>Nome: </Text>
+          <Text style={styles.text}>Nome: </Text>
           <TextInput placeholder="Nome"
             style={styles.textInput}
             onChangeText={(n) => this.setState({ nome: n })}
           />
         </View>
         <View style={styles.form}>
-          <Text>Idade: </Text>
+          <Text style={styles.text}>Idade: </Text>
           <TextInput placeholder="Idade"
             style={styles.textInput}
             onChangeText={(i) => this.setState({ idade: i })}
@@ -66,7 +64,7 @@ class App extends Component {
         </View>
 
         <View style={styles.form}>
-          <Text style={{ justifyContent: 'left' }}>Sexo: </Text>
+          <Text style={styles.text}>Sexo: </Text>
           <Picker
             selectedValue={this.state.sexo}
             onValueChange={(itemValue) => this.setState({ sexo: itemValue })}
@@ -78,7 +76,7 @@ class App extends Component {
         </View>
 
         <View style={styles.form}>
-          <Text>Escolaridade: </Text>
+          <Text style={styles.text}>Escolaridade: </Text>
           <Picker
             onValueChange={(itemValue) => this.setState({ escolaridade: itemValue })}
           >
@@ -90,7 +88,7 @@ class App extends Component {
         </View>
 
         <View style={styles.form}>
-          <Text>Limite: </Text>
+          <Text style={styles.text}>Limite: </Text>
           <Slider minimumValue={50.00}
             maximumValue={1500.00}
             style={{ width: 200, height: 40 }}
@@ -105,7 +103,7 @@ class App extends Component {
         </View>
 
         <View style={styles.form}>
-          <Text>Brasileiro? </Text>
+          <Text style={styles.text}>Brasileiro? </Text>
           <Text>{this.state.brasileiro ? 'Sim' : 'Não'}</Text>
           <Switch
             style={styles.switch}
@@ -127,7 +125,6 @@ class App extends Component {
         <Text style={styles.resultados}>{this.state.resultado}</Text>
 
         </View>
-      </View>
     )
   }
 }
