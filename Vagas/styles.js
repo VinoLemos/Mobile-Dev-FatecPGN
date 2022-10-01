@@ -19,8 +19,13 @@ const styles = StyleSheet.create({
         borderColor: '#222',
         alignSelf: 'center',
         borderRadius: 10,
-        backgroundColor: 'rgba(95, 147, 186, 0.7)',
-        borderColor: '#19394a'
+        backgroundColor: 'rgb(95, 147, 186)',
+        borderColor: '#19394a',
+        shadowOffset: {
+            width: 5,
+            height: 5,
+        },
+        shadowRadius: 5,
     },
     tituloVaga:{
         fontSize: 18,
