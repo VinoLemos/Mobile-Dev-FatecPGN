@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center',        
     },
     titulo: {
         color: '#18181c',
@@ -38,6 +38,12 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderRadius: 10,
         padding: 10,
+        margin: 10,
+        shadowOffset: {
+            width: 5,
+            height: 5,
+        },
+        shadowRadius: 5,
     },
     buttonText: {
         alignSelf: 'center',
@@ -55,12 +61,25 @@ const styles = StyleSheet.create({
     resultados:
     {
         alignContent: 'left',
-        justifyContent: 'left'
+        justifyContent: 'left',
+        margin: 10,
+        color: 'green',
+        backgroundColor: '#7df08e',
+        fontSize: 15,
+        fontWeight: 'bold',
+        borderColor: 'grey',
+        borderRadius: 5,
+        borderStyle: 'solid',
+        shadowOffset: {
+            width: 5,
+            height: 5,
+        },
+        shadowRadius: 5,
     }, 
     text:{
-        fontWeight: 'bold',        
+        fontWeight: 'bold',       
         alignSelf: 'left',
-        flex: 1
+        flex: 1,
     },
 });
 
