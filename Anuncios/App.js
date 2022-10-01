@@ -1,47 +1,69 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, Dimensions, Image, ToastAndroid } from 'react-native'
-import styles from './styles'
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window')
-
-const cardPerSlide = 2
-const cardPadding = 15
-const paddingAround = cardPadding * 2 // slide horizontal padding
-const cardBetweenPadding = cardPadding * (cardPerSlide - 1)
-const totalPadding = paddingAround + cardBetweenPadding
-const imageWidth = (screenWidth - totalPadding) / cardPerSlide
-const imageHeight = (imageWidth / (2 / 3))
+import { StatusBar, FlatList, Image, Animated, Text, View, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import { styles } from './styles.js';
 
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.navBar}>
-          <Text style={styles.navBarTitle}>MOVIES</Text>
-        </View>
-        <ScrollView
-          ref={(ref) => { this.stepCarousel = ref }}
-          contentContainerStyle={styles.scrollViewContainerStyle}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-        >
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: screenWidth, paddingHorizontal: cardPadding }}>
-            <View style={{ width: imageWidth }}>
-              <Image source={{ uri: 'https://image.tmdb.org/t/p/w1280/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg' }}
-                style={{ width: imageWidth, height: imageHeight }} />
-            </View>
-            <View style={{ width: imageWidth }}>
-              <Image source={{ uri: 'https://image.tmdb.org/t/p/w1280/z7FCF54Jvzv9Anxyf82QeqFXXOO.jpg' }}
-                style={{ width: imageWidth, height: imageHeight }} />
-            </View>
-            <View style={{ width: imageWidth }}>
-              <Image source={{ uri: 'https://image.tmdb.org/t/p/w1280/tgcrYiyG75iDcyk3en9NzZis0dh.jpg' }} style={{ width: imageWidth, height: imageHeight }} />
-            </View>
-          </View>
-          
-        </ScrollView>
+const data = [
+  'https://cdn.dribbble.com/users/3281732/screenshots/11192830/media/7690704fa8f0566d572a085637dd1eee.jpg?compress=1&resize=1200x1200',
+  'https://cdn.dribbble.com/users/3281732/screenshots/13130602/media/592ccac0a949b39f058a297fd1faa38e.jpg?compress=1&resize=1200x1200',
+  'https://cdn.dribbble.com/users/3281732/screenshots/9165292/media/ccbfbce040e1941972dbc6a378c35e98.jpg?compress=1&resize=1200x1200',
+  'https://cdn.dribbble.com/users/3281732/screenshots/11205211/media/44c854b0a6e381340fbefe276e03e8e4.jpg?compress=1&resize=1200x1200',
+  'https://cdn.dribbble.com/users/3281732/screenshots/7003560/media/48d5ac3503d204751a2890ba82cc42ad.jpg?compress=1&resize=1200x1200',
+  'https://cdn.dribbble.com/users/3281732/screenshots/6727912/samji_illustrator.jpeg?compress=1&resize=1200x1200',
+  'https://cdn.dribbble.com/users/3281732/screenshots/13661330/media/1d9d3cd01504fa3f5ae5016e5ec3a313.jpg?compress=1&resize=1200x1200'
+
+];
+
+const { width, height } = Dimensions.get('screen');
+
+export default () => {
+  const scrollX = React.useRef(new Animated.Value(0)).current;
+  return (
+    <View style={styles.container}>
+      <StatusBar hidden />
+      <View
+        style={[StyleSheet.absoluteFillObject]}
+      >
+        {data.map((image, index) => {
+          const inputRange = [
+            (index - 1) * width,
+            index * width,
+            (index + 1) * width
+          ]
+          const opacity = scrollX.interpolate({
+            inputRange,
+            outputRange: [0, 1, 0]
+          })
+          return <Animated.Image
+            key={`image-${index}`}
+            source={{ uri: image }}
+            style={[
+              StyleSheet.absoluteFillObject,
+              {
+                opacity
+              }
+            ]}
+            blurRadius={50}
+          />
+        })}
       </View>
-    )
-  }
+      <Animated.FlatList
+        data={data}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+          { useNativeDriver: true }
+        )}
+        keyExtractor={(_, index) => index.toString()}
+        horizontal
+        pagingEnabled
+        renderItem={({ item }) => {
+          return <View style={styles.flatlistView}>
+            <Image source={{ uri: item }} style={styles.image} />
+          </View>
+        }}
+      >
+
+      </Animated.FlatList>
+    </View>
+  )
 }

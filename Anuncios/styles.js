@@ -1,32 +1,34 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native';
+import { ImageUriCache } from 'react-native-web/dist/cjs/modules/ImageLoader';
+const { width, height } = Dimensions.get('screen');
+
+
+const imageW = Dimensions.get('screen').width / 2;
+const imageH = imageW * 1.54;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#000'
+  },
+  flatlistView: {
+    width: width,
     justifyContent: 'center',
     alignItems: 'center',
-    alignContent: 'center',
-    backgroundColor: '#FFFFFF',
+    shadowColor: '#000',
+    shadowOpacity: 0.5,
+    shadowOffSet: {
+      width: 0,
+      height: 0,
+    },
+    shadowRadius: 20
   },
-  navBar: {
-    width: '100%',
-    height: 70,
-    backgroundColor: '#0D0D0D',
-    alignContent: 'center',
-    justifyContent: 'center'
-  },
-  navBarTitle: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: "bold",
-    alignSelf: 'center'
-  },
-  scrollViewContainerStyle: {
-    alignContent: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 600
+  image: {
+    width: imageW,
+    height: imageH,
+    resizeMode: 'cover',
+    borderRadius: 16,
   }
 });
 
-export default styles
+export {styles}
