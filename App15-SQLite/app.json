@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AsyncStorage",
-    "slug": "AsyncStorage",
+    "name": "App15-SQLite",
+    "slug": "App15-SQLite",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
