@@ -1,12 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { lightMode } from './App';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: lightMode ? 'black' : '#5372f0'
     },
     quoteContainer: {
         width: '90%',
@@ -32,7 +30,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30
     },
     newQuote: {
-        color: '#fff',
         fontSize: 18,
         textAlign: 'center',
     },
@@ -53,6 +50,10 @@ const styles = StyleSheet.create({
         alignSelf:'left',
         justifyContent: 'left',
         alignItems: 'left'
+    },
+    toggle: {
+        borderRadius: '50%',
+        paddingBottom: 20,
     }
 });
 
