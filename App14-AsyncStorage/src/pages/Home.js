@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { styles } from './styles'
 import themeContext from '../../config/themeContext';
 
-
+import SwitchWithIcons from "react-native-switch-with-icons";
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import * as Speech from 'expo-speech';
@@ -48,6 +48,7 @@ export default function Home() {
         const url = "https://twitter.com/intent/tweet?Text=" + Quote;
         Linking.openURL(url)
     }
+    
 
     useEffect(() => {
         randomQuote();
@@ -58,7 +59,9 @@ export default function Home() {
 
             <StatusBar barStyle="light-content" />
 
-            <Switch value={mode}
+            <SwitchWithIcons value={mode}
+                thumbColor={{true: "rgb(52, 149, 235)", false: "rgb(255, 255, 255)"}}
+                iconColor={{true: "black    ", false: "#9499AD"}}
                 onValueChange={(value) => {
                     setMode((value) => !value)
                     EventRegister.emit("changeTheme", value);
@@ -76,11 +79,11 @@ export default function Home() {
                     style={{
                         fontSize: 20,
                         marginBottom: -12,
-                        color: theme.color
+                        color: theme.text
                     }}
                 />
 
-                <Text style={styles.quote}>
+                <Text style={[styles.quote, {color: theme.quote}]}>
                     {Quote}
                 </Text>
 
@@ -90,7 +93,7 @@ export default function Home() {
                         textAlign: 'right',
                         marginTop: -50,
                         marginBottom: 20,
-                        color: theme.color
+                        color: theme.text
                     }}
                 />
 
@@ -98,7 +101,7 @@ export default function Home() {
 
                 <TouchableOpacity onPress={randomQuote}
                     style={{
-                        backgroundColor: isLoading ? 'rgba(83, 114, 240, 0.7)' : 'rgba(83, 114, 240, 1)',
+                        backgroundColor: isLoading ? 'rgba(83, 114, 240, 0.7)' : theme.button,
                         padding: 20,
                         borderRadius: 30,
                         _marginVertical: 20, get marginVertical() {
@@ -109,7 +112,7 @@ export default function Home() {
                         },
                     }}>
 
-                    <Text style={[styles.newQuote, { color: theme.button }]}>
+                    <Text style={[styles.newQuote, { color: theme.text }]}>
                         {isLoading ? "Loading..." : "New Quote"}
                     </Text>
 
@@ -118,15 +121,15 @@ export default function Home() {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
 
                     <TouchableOpacity onPress={speak} style={styles.buttons}>
-                        <FontAwesome name="volume-up" size={22} color='#53272F0' />
+                        <FontAwesome name="volume-up" size={22} style={{color: theme.actionButton}} />
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={copyToClipboard} style={styles.buttons}>
-                        <FontAwesome5 name="clipboard" size={22} color='#53272F0' />
+                        <FontAwesome5 name="clipboard" size={22} style={{color: theme.actionButton}} />
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={tweetNow} style={styles.buttons}>
-                        <FontAwesome name="twitter" size={22} color='#53272F0' />
+                        <FontAwesome name="twitter" size={22} style={{color: theme.actionButton}} />
                     </TouchableOpacity>
 
                 </View>
