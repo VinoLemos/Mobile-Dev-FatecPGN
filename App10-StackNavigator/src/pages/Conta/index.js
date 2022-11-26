@@ -1,11 +1,19 @@
-import { Text, TextInput, View, Picker, Switch, Pressable, Button } from "react-native";
+import {
+  Text,
+  TextInput,
+  View,
+  Picker,
+  Switch,
+  Pressable,
+  Button,
+} from "react-native";
 import Slider from "@react-native-community/slider";
 import { styles } from "./styles";
 import React, { useState } from "react";
 import { useNavigation, StackActions } from "@react-navigation/native";
-import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
+import { CheckBox } from "react-native-web";
 
-export default function Conta(){
+export default function Conta() {
   const navigation = useNavigation();
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState(0);
@@ -17,25 +25,25 @@ export default function Conta(){
   const [resultado, setResultado] = useState("");
 
   const irSobre = () => {
-    navigation.navigate('Sobre', {
+    navigation.navigate("Sobre", {
       nome,
       idade,
-      sexo
-    })
-  }
+      sexo,
+    });
+  };
 
-    return(
-      <View style={styles.container}>
-        <Text style={styles.titulo}>Abertura de Conta</Text>
-        <View style={styles.form}> 
+  return (
+    <View style={styles.container}>
+      <Text style={styles.titulo}>Abertura de Conta</Text>
+      <View style={styles.form}>
         <Text style={styles.text}>Nome: </Text>
         <TextInput
           placeholder="Nome"
           style={styles.textInput}
           onChangeText={(n) => setNome(n)}
         />
-        </View>
-        <View style={styles.form}>
+      </View>
+      <View style={styles.form}>
         <Text style={styles.text}>Idade: </Text>
         <TextInput
           placeholder="Idade"
@@ -82,14 +90,12 @@ export default function Conta(){
 
       <View style={styles.form}>
         <Text style={styles.text}>Brasileiro? </Text>
-        <Text>{brasileiro ? "Sim" : "Não"}</Text>
-        <Switch
+        <CheckBox
           style={styles.switch}
           value={brasileiro}
           onValueChange={(valor) => setBrasileiro(valor)}
         />
       </View>
-
-      </View>  
-    );
+    </View>
+  );
 }
