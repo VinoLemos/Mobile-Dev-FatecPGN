@@ -4,6 +4,7 @@ import {
   View,
   Picker,
   Switch,
+  TouchableOpacity,
   Pressable,
   Button,
 } from "react-native";
@@ -26,9 +27,12 @@ export default function Conta() {
 
   const irSobre = () => {
     navigation.navigate("Sobre", {
-      nome,
-      idade,
-      sexo,
+      nome: nome,
+      idade: idade,
+      sexo: sexo,
+      escolaridade: escolaridade,
+      brasileiro: brasileiro,
+      limite: limite
     });
   };
 
@@ -47,6 +51,7 @@ export default function Conta() {
         <Text style={styles.text}>Idade: </Text>
         <TextInput
           placeholder="Idade"
+          textContentType="numeric"
           style={styles.textInput}
           onChangeText={(i) => setIdade(i)}
         />
@@ -96,6 +101,14 @@ export default function Conta() {
           onValueChange={(valor) => setBrasileiro(valor)}
         />
       </View>
+
+      <TouchableOpacity 
+        activeOpacity={0.8}
+        onPress={irSobre}
+        style={styles.button}
+      >
+        Cadastrar
+      </TouchableOpacity>
     </View>
   );
 }
