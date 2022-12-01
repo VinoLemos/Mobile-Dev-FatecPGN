@@ -2,6 +2,10 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
+import api from './src/services/api';
+
+import Endereco from './src/Endereco';
+
 export default function App() {
   return (
     <View style={styles.container}>
