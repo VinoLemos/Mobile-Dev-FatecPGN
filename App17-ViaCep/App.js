@@ -1,11 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text>CEP X Endereço </Text>
+
+      <TextInput
+        placeholder='Digite o CEP...'
+      />
+
+      <TouchableOpacity>
+        <AntDesign name='checksquareo'/>
+      </TouchableOpacity>
+
     </View>
   );
 }
