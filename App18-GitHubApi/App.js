@@ -19,7 +19,7 @@ export default function App() {
     api.get(`/${login}`).then((response) => {
       setId(response.data.id);
       setNome(response.data.name);
-      setRepositorios(response.data.repos);
+      setRepositorios(response.data.repos_url);
       setDataCriacao(response.data.created_at);
       setSeguidores(response.data.followers);
       setSeguindo(response.data.following);
