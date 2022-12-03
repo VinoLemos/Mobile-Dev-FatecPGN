@@ -28,7 +28,6 @@ export default function App() {
         alignItems: 'center', justifyContent: 'center',
         flex: 1
       }}>
-        <ActivityIndicator color="#09A6FF" size={40} />
       </View>
     )
   } else {

@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#0275f7',
         width: '100%',
-        height: '100px',
+        height: 80,
     },
     titulo: {
         alignSelf: 'center',

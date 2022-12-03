@@ -3,7 +3,7 @@ import { View, Text, Image, Modal, TouchableOpacity } from 'react-native'
 import styles from './styles'
 
 
-export default class Tarefas extends Component {
+export default class Filmes extends Component {
     state = {
         modalVisible: false
     }
