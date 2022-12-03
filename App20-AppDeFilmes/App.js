@@ -1,20 +1,51 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator } from 'react-native-web';
+import api from './src/services/api';
+import styles from './styles';
+import Filmes from './src/Filmes';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  const [filmes, setFilmes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await api.get('/')
+
+      setFilmes(response.data)
+      setLoading(false)
+    }
+
+    fetchData()
+  })
+
+  if (loading == true) {
+    return (
+      <View style={{
+        alignItems: 'center', justifyContent: 'center',
+        flex: 1
+      }}>
+        <ActivityIndicator color="#09A6FF" size={40} />
+      </View>
+    )
+  } else {
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.titulo}>App de Filmes</Text>
+        </View>
+
+        <FlatList
+          data={filmes}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({ item }) => <Filmes data={item} />}
+        />
+
+      </View>
+    )
+  }
+
+}
