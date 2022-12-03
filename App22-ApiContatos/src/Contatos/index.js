@@ -3,6 +3,8 @@ import {View, Text, StyleSheet, TouchableOpacity, FlatList, ActivityIndicator, B
 
 import { useNavigation } from "@react-navigation/native";
 
+import api from '../services/api';
+
 export default function Contatos() {
     const [contatos, setContatos] = useState([]);
     const [loading, setLoading] = useState(true);
