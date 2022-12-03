@@ -79,13 +79,16 @@ const App = () => {
 
   const renderTarefa = ({ item }) => {
     return (
-      <Card>
-        <Paragraph>{item.id}</Paragraph>
-        <Paragraph>{item.nome}</Paragraph>
-        <Checkbox
-          status={checked ? 'checked' : 'unchecked'}
-          onPress={(item) => setChecked(!checked)}
-        />
+      <Card style={styles.cardTarefa}>
+        <View style={styles.itemTarefa}>
+          <Paragraph style={styles.textoTarefa}>{item.id}</Paragraph>
+          <Paragraph style={styles.textoTarefa}>{item.nome}</Paragraph>
+          <Checkbox
+            color='#4bcc6e'
+            status={checked ? 'checked' : 'unchecked'}
+            onPress={(item) => setChecked(!checked)}
+          />
+        </View>
       </Card>
     );
   };
@@ -106,13 +109,13 @@ const App = () => {
           <TextInput
             placeholder="Insira uma nova tarefa"
             textColor="#222"
-            activeOutlineColor="#222"
+            activeUnderlineColor="#346beb"
             value={tarefa}
             onChangeText={setTarefa}
             style={styles.campoTarefa}
           />
-          <Button onPress={incluirTarefa} >
-            <Entypo name='circle-with-plus' size={35} color="#4bcc6e" />
+          <Button onPress={incluirTarefa} style={{justifyContent: "center"}}>
+            <Entypo name='circle-with-plus' size={25} color="#4bcc6e" />
           </Button>
         </View>
         
@@ -132,13 +135,33 @@ const styles = StyleSheet.create({
     backgroundColor: "#346beb"
   },
   containerTarefa: {
-    margin: "10%",
+    margin: 20,
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    alignSelf: "center"
   },
   campoTarefa: {
     backgroundColor: "#ddd",
-    width: "70%"
+    width: "100%"
+  },
+  cardTarefa: {
+    backgroundColor: "#ddd",
+    width: "50%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignSelf: "center",
+    marginBottom: 20
+  },
+  itemTarefa: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 5
+  },
+  textoTarefa: {
+    color: "#222", 
+    marginHorizontal: 5
   }
 });
 
